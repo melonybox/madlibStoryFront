@@ -5,7 +5,7 @@ import {logoutUser} from '../actions/action';
 
 class NavBar extends Component {
 
-  handleClick = event => {
+  handleLogOut = event => {
     event.preventDefault()
     // Remove the token from localStorage
     localStorage.removeItem("token")
@@ -17,29 +17,41 @@ class NavBar extends Component {
     const userExist = this.props.currentUser.username !== undefined
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
+      { userExist ?
         <div>
-          <p style={{margin: 3, padding: 0}}>{ userExist ? this.props.currentUser.username : null}</p>
+          <p style={{margin: 3, padding: 0}}> {this.props.currentUser.username}</p>
         </div>
+        :
+        null
+      }
+      { userExist ?
         <div>
-          <p style={{margin: 3, padding: 0}}>Story</p>
+          <button>
+            <Link to="/storybox" style={{textDecoration: "none", color: "inherit"}}>
+              Story
+            </Link>
+          </button>
         </div>
+        :
+        null
+      }
         <div>
           <p style={{margin: 3, padding: 0}}>History</p>
         </div>
+      { this.props.currentUser.username ?
         <div>
-        {this.props.currentUser.username
-          ? <button onClick={this.handleClick}>Log Out</button>
-          :
-          <div style={{display: "flex", flexDirection: "row"}}>
-            <Link to="/signup" style={{margin: 3, padding: 0}}>
-                <p>SignUp</p>
-            </Link>
-            <Link to="/login" style={{margin: 3, padding: 0}}>
-                <p>Login</p>
-            </Link>
-          </div>
-        }
+          <button onClick={this.handleLogOut} style={{cursor: "pointer"}}>Log Out</button>
         </div>
+        :
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <Link to="/signup" style={{margin: 3, padding: 0}}>
+              <p>SignUp</p>
+          </Link>
+          <Link to="/login" style={{margin: 3, padding: 0}}>
+              <p>Login</p>
+          </Link>
+        </div>
+      }
       </div>
     )
   }

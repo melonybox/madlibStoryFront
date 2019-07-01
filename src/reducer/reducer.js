@@ -12,6 +12,9 @@ export default function reducer(state = initialState, action) {
         return {...state, currentUser: {} }
       case 'GET_MADLIBLIST':
         return {...state, madLibList: action.payload, madLibLoaded: true}
+      case 'BEGIN_STORY':
+      debugger
+        return {...state, currentUser: action.payload}
       default:
         return state;
     }

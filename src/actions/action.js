@@ -104,3 +104,7 @@ export const loginUser = userObj => ({
 export const logoutUser = () => ({
   type: 'LOGOUT_USER'
 })
+
+export const beginStory = () => ({
+  type: 'BEGIN_STORY'
+})

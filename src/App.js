@@ -5,6 +5,7 @@ import {getUserFetch, getAllMadlibs} from './actions/action';
 import Signup from './components/signup';
 import Login from './components/login';
 import NavBar from './components/navbar';
+import StoryBox from './containers/storybox';
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     if (!this.props.currentUser === false) {
       this.props.getUserFetch()
       this.props.getAllMadlibs()
+      console.log("LOADED")
     }
   }
 
@@ -24,12 +26,11 @@ class App extends Component {
         return entry
       })
       let replaceWordsRegex = new RegExp(replaceWords.join("|"), 'gi')
-      testa["<spell>"] = "Aemono"
+      testa["<spell>"] = "Ameno"
       testa["<person>"] = "Billy Bob"
       let testc = test.replace(replaceWordsRegex, function(matched){
         return testa[matched];
       });
-      debugger
     }
     return (
       <div>
@@ -37,6 +38,7 @@ class App extends Component {
         <Switch>
           <Route path="/signup" component={Signup}/>
           <Route path="/login" component={Login}/>
+          <Route path="/storybox" component={StoryBox}/>
         </Switch>
       </div>
     );
