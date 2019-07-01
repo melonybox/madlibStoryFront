@@ -96,6 +96,11 @@ export const getMadlibList = data => ({
     payload: data
 })
 
+export const fillList = data => ({
+    type: 'FILL_LIST',
+    payload: data
+})
+
 export const loginUser = userObj => ({
     type: 'LOGIN_USER',
     payload: userObj

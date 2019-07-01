@@ -20,7 +20,9 @@ class App extends Component {
   render() {
     if (this.props.madLibLoaded === true) {
       var test = this.props.madLibList[0].template
+      // template
       var testa = JSON.parse(this.props.madLibList[0].placeHolderEmpty)
+      // emptyObjectWithKeys
       let regEx = /(<\w*?>)/gi;
       let replaceWords = Object.keys(testa).map((entry,idx) => {
         return entry

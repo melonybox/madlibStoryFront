@@ -3,18 +3,9 @@ import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {beginStory} from '../actions/action';
 import StoryForm from '../components/storyform';
+import Story from '../components/story';
 
 class StoryBox extends Component {
-
-  state = {
-    viewType: null
-  }
-
-  handleBeginStory = () => {
-    this.setState({
-      viewType: "form"
-    })
-  }
 
   render(){
     const userExist = this.props.currentUser.username !== undefined
@@ -23,15 +14,17 @@ class StoryBox extends Component {
       return <Redirect to="/" />
     }
 
-    switch (this.state.viewType) {
+    switch (this.props.viewType) {
       case "form":
         return <StoryForm />
+      case "story":
+        return <Story />
       default:
       return(
         <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
           <p>Hi {this.props.currentUser.username}</p>
           { noChapter ?
-            <button onClick={this.handleBeginStory} style={{cursor: "pointer"}}>
+            <button onClick={this.props.beginStory} style={{cursor: "pointer"}}>
               Start
             </button>
             :
@@ -44,7 +37,8 @@ class StoryBox extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  viewType: state.viewType
 })
 
 const mapDispatchToProps = dispatch => ({

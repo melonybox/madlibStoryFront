@@ -1,38 +1,43 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import {beginStory} from './actions/action';
+
 class Story extends Component {
 
-  handleBeginStory = event => {
-    event.preventDefault()
-    // Remove the token from localStorage
-    localStorage.removeItem("token")
-    // Remove the user object from the Redux store
-    this.props.logoutUser()
+  state = {
+    madlibTemplate: this.props.madLibList[0].template,
+    madLibRegex: null
+  }
+
+  completedMadLib = () => {
+    return this.state.madlibTemplate.replace(this.replaceWordsRegex(), (matched) => {
+      return this.props.madLibCompObj[matched];
+    });
+  }
+
+  replaceWords = () => {
+    return Object.keys(this.props.madLibCompObj).map((entry,idx) => {
+      return entry
+    })
+  }
+
+  replaceWordsRegex = () => {
+    return new RegExp(this.replaceWords().join("|"), 'gi')
   }
 
   render(){
-    const userExist = this.props.currentUser.username !== undefined
-
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
-        <p>Hi {this.props.currentUser.username}</p>
-        { noChapter ?
-          <button onClick={this.handleBeginStory} style={{cursor: "pointer"}}>
-            Start
-          </button>
-          :
-          null
-        }
+        {this.completedMadLib()}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  madLibList: state.madLibList,
+  madLibCompObj: state.madLibCompObj
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Story);
+export default connect(mapStateToProps, null)(Story);

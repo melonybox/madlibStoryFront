@@ -1,7 +1,9 @@
 const initialState = {
   currentUser: {},
   madLibList: [],
-  madLibLoaded: false
+  madLibLoaded: false,
+  madLibCompObj: {},
+  viewType: null
 }
 
 export default function reducer(state = initialState, action) {
@@ -9,12 +11,13 @@ export default function reducer(state = initialState, action) {
       case 'LOGIN_USER':
         return {...state, currentUser: action.payload}
       case 'LOGOUT_USER':
-        return {...state, currentUser: {} }
+        return {...state, currentUser: {}}
       case 'GET_MADLIBLIST':
         return {...state, madLibList: action.payload, madLibLoaded: true}
       case 'BEGIN_STORY':
-      debugger
-        return {...state, currentUser: action.payload}
+        return {...state, viewType: "form"}
+      case 'FILL_LIST':
+        return {...state, madLibCompObj: action.payload, viewType: "story"}
       default:
         return state;
     }
