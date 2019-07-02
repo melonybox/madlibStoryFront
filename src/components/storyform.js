@@ -5,8 +5,8 @@ import {fillList} from '../actions/action';
 class StoryForm extends Component {
 
   state = {
-    madlibTemplate: this.props.madLibList[0].template,
-    madLibObj: JSON.parse(this.props.madLibList[0].placeHolderEmpty)
+    madlibTemplate: this.props.madLibList[this.props.currentUser.current_chapter].template,
+    madLibObj: JSON.parse(this.props.madLibList[this.props.currentUser.current_chapter].placeHolderEmpty)
   }
 
   handleChange = (event) => {
@@ -21,7 +21,6 @@ class StoryForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.fillList(this.state.madLibObj)
-    console.log("hi")
   }
 
   render(){

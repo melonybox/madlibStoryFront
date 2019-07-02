@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {nextChapter} from '../actions/action';
 
 class Story extends Component {
 
   state = {
-    madlibTemplate: this.props.madLibList[0].template,
+    madlibTemplate: this.props.madLibList[this.props.currentUser.current_chapter].template,
     madLibRegex: null
   }
 
@@ -24,10 +25,27 @@ class Story extends Component {
     return new RegExp(this.replaceWords().join("|"), 'gi')
   }
 
+  handleNextChapter = () => {
+    this.props.nextChapter()
+  }
+
   render(){
+    let madLibListLength = (this.props.madLibList.length - 1)
+    let userCurrentChapter = this.props.currentUser.current_chapter
+    let finalChapter = (madLibListLength === userCurrentChapter)
+
     return(
-      <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
-        {this.completedMadLib()}
+      <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
+        <div>
+          {this.completedMadLib()}
+        </div>
+        { finalChapter ?
+          null
+          :
+          <button onClick={this.handleNextChapter} style={{cursor: "pointer"}}>
+            Next Chapter
+          </button>
+        }
       </div>
     )
   }
@@ -39,5 +57,8 @@ const mapStateToProps = state => ({
   madLibCompObj: state.madLibCompObj
 })
 
+const mapDispatchToProps = dispatch => ({
+  nextChapter: () => dispatch(nextChapter())
+})
 
-export default connect(mapStateToProps, null)(Story);
+export default connect(mapStateToProps, mapDispatchToProps)(Story);

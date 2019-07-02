@@ -113,3 +113,7 @@ export const logoutUser = () => ({
 export const beginStory = () => ({
   type: 'BEGIN_STORY'
 })
+
+export const nextChapter = () => ({
+  type: 'NEXT_CHAPTER'
+})

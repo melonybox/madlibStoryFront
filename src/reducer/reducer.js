@@ -15,7 +15,19 @@ export default function reducer(state = initialState, action) {
       case 'GET_MADLIBLIST':
         return {...state, madLibList: action.payload, madLibLoaded: true}
       case 'BEGIN_STORY':
-        return {...state, viewType: "form"}
+        return {...state, viewType: "form",
+        currentUser: {
+          ...state.currentUser,
+          current_chapter: 0
+        }
+      }
+      case 'NEXT_CHAPTER':
+        return {...state, viewType: "form",
+        currentUser: {
+          ...state.currentUser,
+          current_chapter: state.currentUser.current_chapter+1
+        }
+      }
       case 'FILL_LIST':
         return {...state, madLibCompObj: action.payload, viewType: "story"}
       default:
