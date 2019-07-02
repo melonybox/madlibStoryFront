@@ -78,6 +78,31 @@ export const userPostFetch = user => {
       })
   }
 }
+
+export const postFavorite = data => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/histories", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.errors) {
+          // Here you should have logic to handle invalid creation of a user.
+          // This assumes your Rails API will return a JSON object with a key of
+          // 'message' if there is an error with creating the user, i.e. invalid username
+          alert(data.errors)
+        } else {
+          console.log("Saved!")
+        }
+      })
+  }
+}
+
 export const getAllMadlibs = () => {
   return dispatch => {
     fetch("http://localhost:3000/api/v1/madlibs", {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {nextChapter} from '../actions/action';
+import {postFavorite, nextChapter} from '../actions/action';
 
 class Story extends Component {
 
@@ -10,6 +10,7 @@ class Story extends Component {
   }
 
   completedMadLib = () => {
+    this.handleSaveChapter()
     return this.state.madlibTemplate.replace(this.replaceWordsRegex(), (matched) => {
       return this.props.madLibCompObj[matched];
     });
@@ -23,6 +24,16 @@ class Story extends Component {
 
   replaceWordsRegex = () => {
     return new RegExp(this.replaceWords().join("|"), 'gi')
+  }
+
+  handleSaveChapter = () => {
+    let madLibCompObjSave = JSON.stringify(this.props.madLibCompObj)
+    let madLibCurrChapter = (this.props.currentUser.current_chapter + 1)
+    let data = {user_id: this.props.currentUser.id,
+                madlib_id: madLibCurrChapter,
+                placeHolderFilled: madLibCompObjSave
+              }
+    this.props.postFavorite(data)
   }
 
   handleNextChapter = () => {
@@ -58,6 +69,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  postFavorite: data => dispatch(postFavorite(data)),
   nextChapter: () => dispatch(nextChapter())
 })
 
