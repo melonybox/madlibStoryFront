@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import {logoutUser, historyButton, historyButtonOff} from '../actions/action';
+import {logoutUser, historyButton, historyButtonOff, historyEditDefault} from '../actions/action';
 
 class NavBar extends Component {
 
@@ -12,6 +12,10 @@ class NavBar extends Component {
     // Remove the user object from the Redux store
     this.props.logoutUser()
     this.props.historyButtonOff()
+  }
+
+  handleHistoryDefault = () => {
+    this.props.historyEditDefault()
   }
 
   render(){
@@ -45,7 +49,7 @@ class NavBar extends Component {
       { this.props.historyView ?
         <div>
           <button>
-            <Link to="/historybox" style={{textDecoration: "none", color: "inherit"}}>
+            <Link onClick={this.handleHistoryDefault} to="/historybox" style={{textDecoration: "none", color: "inherit"}}>
               History
             </Link>
           </button>
@@ -80,7 +84,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   logoutUser: () => dispatch(logoutUser()),
   historyButton: () => dispatch(historyButton()),
-  historyButtonOff: () => dispatch(historyButtonOff())
+  historyButtonOff: () => dispatch(historyButtonOff()),
+  historyEditDefault: () => dispatch(historyEditDefault())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

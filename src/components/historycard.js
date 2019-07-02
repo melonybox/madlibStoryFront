@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {historyEditView, setCurrMadlibEdit} from '../actions/action';
+
 
 class HistoryCard extends Component {
+
+  handleOnClick = () => {
+    this.props.historyEditView()
+    this.props.setCurrMadlibEdit(this.props.currMadLib)
+  }
 
   render(){
     let currMadLib = this.props.currMadLib
@@ -9,7 +16,7 @@ class HistoryCard extends Component {
     return(
       <div style={{display: "flex", justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
         <p>{this.props.madLibList[currMadLib.madlib_id - 1].title}</p>
-        <button style={{cursor: "pointer"}}>
+        <button onClick={this.handleOnClick} style={{cursor: "pointer"}}>
           View
         </button>
       </div>
@@ -22,4 +29,9 @@ const mapStateToProps = state => ({
   madLibList: state.madLibList
 })
 
-export default connect(mapStateToProps, null)(HistoryCard);
+const mapDispatchToProps = dispatch => ({
+  historyEditView: () => dispatch(historyEditView()),
+  setCurrMadlibEdit: data => dispatch(setCurrMadlibEdit(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryCard);

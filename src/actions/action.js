@@ -153,3 +153,16 @@ export const historyButton = () => ({
 export const historyButtonOff = () => ({
   type: 'HISTORY_VIEW_OFF'
 })
+
+export const historyEditDefault = () => ({
+  type: 'HISTORY_EDIT_DEFAULT'
+})
+
+export const historyEditView = () => ({
+  type: 'HISTORY_EDIT_VIEW'
+})
+
+export const setCurrMadlibEdit = data => ({
+  type: 'SET_CURR_MADLIB_EDIT',
+  payload: data
+})
