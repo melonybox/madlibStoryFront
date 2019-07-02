@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import {logoutUser} from '../actions/action';
+import {logoutUser, historyButton, historyButtonOff} from '../actions/action';
 
 class NavBar extends Component {
 
@@ -11,10 +11,17 @@ class NavBar extends Component {
     localStorage.removeItem("token")
     // Remove the user object from the Redux store
     this.props.logoutUser()
+    this.props.historyButtonOff()
   }
 
   render(){
     const userExist = this.props.currentUser.username !== undefined
+    if (userExist === true) {
+      const userHistory = this.props.currentUser.histories.length === 0
+      if (userHistory === false) {
+        this.props.historyButton()
+      }
+    }
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
       { userExist ?
@@ -35,9 +42,17 @@ class NavBar extends Component {
         :
         null
       }
+      { this.props.historyView ?
         <div>
-          <p style={{margin: 3, padding: 0}}>History</p>
+          <button>
+            <Link to="/historybox" style={{textDecoration: "none", color: "inherit"}}>
+              History
+            </Link>
+          </button>
         </div>
+        :
+        null
+      }
       { this.props.currentUser.username ?
         <div>
           <button onClick={this.handleLogOut} style={{cursor: "pointer"}}>Log Out</button>
@@ -58,11 +73,14 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  historyView: state.historyView
 })
 
 const mapDispatchToProps = dispatch => ({
-  logoutUser: () => dispatch(logoutUser())
+  logoutUser: () => dispatch(logoutUser()),
+  historyButton: () => dispatch(historyButton()),
+  historyButtonOff: () => dispatch(historyButtonOff())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

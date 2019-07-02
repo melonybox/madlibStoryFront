@@ -97,6 +97,9 @@ export const postFavorite = data => {
           // 'message' if there is an error with creating the user, i.e. invalid username
           alert(data.errors)
         } else {
+          if (data.madlib_id === 1) {
+            dispatch(historyButton())
+          }
           console.log("Saved!")
         }
       })
@@ -141,4 +144,12 @@ export const beginStory = () => ({
 
 export const nextChapter = () => ({
   type: 'NEXT_CHAPTER'
+})
+
+export const historyButton = () => ({
+  type: 'HISTORY_VIEW'
+})
+
+export const historyButtonOff = () => ({
+  type: 'HISTORY_VIEW_OFF'
 })

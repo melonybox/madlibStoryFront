@@ -6,6 +6,7 @@ import Signup from './components/signup';
 import Login from './components/login';
 import NavBar from './components/navbar';
 import StoryBox from './containers/storybox';
+import HistoryBox from './containers/historybox';
 
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
           <Route path="/signup" component={Signup}/>
           <Route path="/login" component={Login}/>
           <Route path="/storybox" component={StoryBox}/>
+          <Route path="/historybox" component={HistoryBox}/>
         </Switch>
       </div>
     );
