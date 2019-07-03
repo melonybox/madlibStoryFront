@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {historyEditView,updateFavorite,setSaveStateFalse} from '../actions/action';
+import {historyEditView,updateFavorite} from '../actions/action';
 
 class HistoryForm extends Component {
 
@@ -30,12 +30,10 @@ class HistoryForm extends Component {
                 placeHolderFilled: JSON.stringify(this.state.filledObj)
               }
     let dataArray = [id,data]
-    this.props.setSaveStateFalse()
     this.props.updateFavorite(dataArray)
   }
 
   render(){
-    debugger
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <div>
@@ -73,8 +71,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   historyEditView: () => dispatch(historyEditView()),
-  updateFavorite: data => dispatch(updateFavorite(data)),
-  setSaveStateFalse: () => dispatch(setSaveStateFalse())
+  updateFavorite: data => dispatch(updateFavorite(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryForm);
