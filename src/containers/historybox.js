@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import HistorySelect from '../containers/historyselect';
 import HistoryView from '../components/historyview';
+import HistoryForm from '../components/historyform';
 
 class HistoryBox extends Component {
 
@@ -14,6 +15,8 @@ class HistoryBox extends Component {
     switch (this.props.madLibEditType) {
       case "view":
         return <HistoryView />
+      case "form":
+        return <HistoryForm />
       default:
         return <HistorySelect />
 

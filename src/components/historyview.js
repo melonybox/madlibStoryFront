@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {historyEditForm} from '../actions/action';
 
 class HistoryView extends Component {
 
@@ -24,6 +25,10 @@ class HistoryView extends Component {
     return new RegExp(this.replaceWords().join("|"), 'gi')
   }
 
+  handleEditClick = () => {
+    this.props.historyEditForm()
+  }
+
   render(){
     return(
       <div style={{display: "flex", justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
@@ -32,7 +37,7 @@ class HistoryView extends Component {
           <button style={{cursor: "pointer"}}>
             Save
           </button>
-          <button style={{cursor: "pointer"}}>
+          <button onClick={this.handleEditClick} style={{cursor: "pointer"}}>
             Edit
           </button>
         </div>
@@ -47,4 +52,8 @@ const mapStateToProps = state => ({
   currMadLibEdit: state.currMadLibEdit
 })
 
-export default connect(mapStateToProps, null)(HistoryView);
+const mapDispatchToProps = dispatch => ({
+  historyEditForm: () => dispatch(historyEditForm())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryView);

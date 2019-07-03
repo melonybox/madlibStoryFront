@@ -25,6 +25,8 @@ export default function reducer(state = initialState, action) {
         return {...state, madLibEditType: null}
       case 'HISTORY_EDIT_VIEW':
         return {...state, madLibEditType: "view"}
+      case 'HISTORY_EDIT_FORM':
+        return {...state, madLibEditType: "form"}
       case 'SET_CURR_MADLIB_EDIT':
         return {...state, currMadLibEdit: action.payload}
       case 'BEGIN_STORY':
