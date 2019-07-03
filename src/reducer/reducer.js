@@ -6,7 +6,9 @@ const initialState = {
   viewType: null,
   historyView: false,
   madLibEditType: null,
-  currMadLibEdit: null
+  currMadLibEdit: null,
+  updateEditView: false,
+  saveState: false
 }
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +31,26 @@ export default function reducer(state = initialState, action) {
         return {...state, madLibEditType: "form"}
       case 'SET_CURR_MADLIB_EDIT':
         return {...state, currMadLibEdit: action.payload}
+      case 'SET_EDIT_VIEW_FALSE':
+        return {...state, madLibEditType: false}
+      case 'SET_EDIT_VIEW_TRUE':
+        return {...state, madLibEditType: true}
+      case 'SET_SAVE_STATE_TRUE':
+        return {...state, saveState: true}
+      case 'SET_SAVE_STATE_FALSE':
+        return {...state, saveState: false}
+      case 'UPDATE_FAVORITE_ARRAY_STATE':
+        return {...state, currentUser: {
+          ...state.currentUser,
+          histories: action.payload
+        }
+      }
+      case 'UPDATE_USER_HISTORY':
+        return {...state, currentUser: {
+          ...state.currentUser,
+          histories: [...state.currentUser.histories, action.payload]
+        }
+      }
       case 'BEGIN_STORY':
         return {...state, viewType: "form",
         currentUser: {

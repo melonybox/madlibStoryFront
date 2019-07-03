@@ -100,6 +100,7 @@ export const postFavorite = data => {
           if (data.madlib_id === 1) {
             dispatch(historyButton())
           }
+          dispatch(updateUserHistory(data))
           console.log("Saved!")
         }
       })
@@ -107,15 +108,14 @@ export const postFavorite = data => {
 }
 
 export const updateFavorite = data => {
-  debugger
   return dispatch => {
-    return fetch("http://localhost:3000/api/v1/histories", {
-      method: "POST",
+    return fetch(`http://localhost:3000/api/v1/histories/${data[0]}`, {
+      method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data[1])
     })
       .then(resp => resp.json())
       .then(data => {
@@ -126,15 +126,30 @@ export const updateFavorite = data => {
           alert(data.errors)
         } else {
           dispatch(historyEditDefault())
+          dispatch(updateFavoriteArray(data))
           console.log("Updated!")
         }
       })
   }
 }
 
+export const updateFavoriteArray = data => {
+  return (dispatch, getState) => {
+    let newArray = getState().currentUser.histories
+    let updateArray = newArray.map((history)=>{
+      if (history.id === data.id) {
+        return data
+      } else {
+        return history
+      }
+    })
+    dispatch(updateFavoriteArrayState(updateArray))
+  }
+}
+
 export const getAllMadlibs = () => {
   return dispatch => {
-    fetch("http://localhost:3000/api/v1/madlibs", {
+    return fetch("http://localhost:3000/api/v1/madlibs", {
           method: "GET",
           headers: {
             'Accept': 'application/json',
@@ -195,4 +210,30 @@ export const historyEditForm = () => ({
 export const setCurrMadlibEdit = data => ({
   type: 'SET_CURR_MADLIB_EDIT',
   payload: data
+})
+
+export const updateFavoriteArrayState = data => ({
+  type: 'UPDATE_FAVORITE_ARRAY_STATE',
+  payload: data
+})
+
+export const setEditViewFalse = () => ({
+  type: 'SET_EDIT_VIEW_FALSE',
+})
+
+export const setEditViewTrue = () => ({
+  type: 'SET_EDIT_VIEW_TRUE',
+})
+
+export const updateUserHistory = (data) => ({
+  type: 'UPDATE_USER_HISTORY',
+  payload: data
+})
+
+export const setSaveStateTrue = () => ({
+  type: 'SET_SAVE_STATE_TRUE'
+})
+
+export const setSaveStateFalse = () => ({
+  type: 'SET_SAVE_STATE_FALSE'
 })

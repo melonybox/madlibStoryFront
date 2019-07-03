@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {postFavorite, nextChapter} from '../actions/action';
+import {postFavorite, nextChapter,setSaveStateTrue} from '../actions/action';
 
 class Story extends Component {
 
@@ -27,13 +27,16 @@ class Story extends Component {
   }
 
   handleSaveChapter = () => {
-    let madLibCompObjSave = JSON.stringify(this.props.madLibCompObj)
-    let madLibCurrChapter = (this.props.currentUser.current_chapter + 1)
-    let data = {user_id: this.props.currentUser.id,
-                madlib_id: madLibCurrChapter,
-                placeHolderFilled: madLibCompObjSave
-              }
-    this.props.postFavorite(data)
+    if (this.props.saveState === false) {
+      let madLibCompObjSave = JSON.stringify(this.props.madLibCompObj)
+      let madLibCurrChapter = (this.props.currentUser.current_chapter + 1)
+      let data = {user_id: this.props.currentUser.id,
+                  madlib_id: madLibCurrChapter,
+                  placeHolderFilled: madLibCompObjSave
+                }
+      this.props.postFavorite(data)
+      this.props.setSaveStateTrue()
+    }
   }
 
   handleNextChapter = () => {
@@ -65,12 +68,14 @@ class Story extends Component {
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
   madLibList: state.madLibList,
-  madLibCompObj: state.madLibCompObj
+  madLibCompObj: state.madLibCompObj,
+  saveState: state.saveState
 })
 
 const mapDispatchToProps = dispatch => ({
   postFavorite: data => dispatch(postFavorite(data)),
-  nextChapter: () => dispatch(nextChapter())
+  nextChapter: () => dispatch(nextChapter()),
+  setSaveStateTrue: () => dispatch(setSaveStateTrue())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Story);

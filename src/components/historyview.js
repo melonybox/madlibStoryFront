@@ -34,9 +34,6 @@ class HistoryView extends Component {
       <div style={{display: "flex", justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <p>{this.completedMadLib()}</p>
         <div style={{display: "flex", justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
-          <button style={{cursor: "pointer"}}>
-            Save
-          </button>
           <button onClick={this.handleEditClick} style={{cursor: "pointer"}}>
             Edit
           </button>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fillList} from '../actions/action';
+import {fillList,setSaveStateFalse} from '../actions/action';
 
 class StoryForm extends Component {
 
@@ -21,6 +21,7 @@ class StoryForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.fillList(this.state.madLibObj)
+    this.props.setSaveStateFalse()
   }
 
   render(){
@@ -61,7 +62,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fillList: data => dispatch(fillList(data))
+  fillList: data => dispatch(fillList(data)),
+  setSaveStateFalse: () => dispatch(setSaveStateFalse())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoryForm);
