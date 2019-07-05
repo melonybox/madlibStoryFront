@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   render() {
+
     // if (this.props.madLibLoaded === true) {
     //   var test = this.props.madLibList[0].template
     //   // template

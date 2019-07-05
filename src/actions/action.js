@@ -18,7 +18,12 @@ export const getUserFetch = () => {
             localStorage.removeItem("token")
 					  alert(data.errors)
           } else {
-            dispatch(loginUser(data))
+            if (data.current_chapter === null) {
+              data.current_chapter = 0
+              dispatch(loginUser(data))
+            } else {
+              dispatch(loginUser(data))
+            }
           }
         })
     }
@@ -44,8 +49,16 @@ export const userLoginFetch = user => {
           localStorage.removeItem("token")
           alert(data.errors)
         } else {
-          localStorage.setItem("token", data.token)
-          dispatch(loginUser(data.user))
+          // localStorage.setItem("token", data.token)
+          // dispatch(loginUser(data.user))
+          if (data.user.current_chapter === null) {
+            data.user.current_chapter = 0
+            dispatch(loginUser(data.user))
+            localStorage.setItem("token", data.token)
+          } else {
+            localStorage.setItem("token", data.token)
+            dispatch(loginUser(data.user))
+          }
         }
       })
   }
@@ -70,9 +83,11 @@ export const userPostFetch = user => {
           localStorage.removeItem("token")
           alert(data.errors)
         } else {
-          localStorage.setItem("token", data.token)
-          dispatch(loginUser(data.user))
-
+          if (data.user.current_chapter === null) {
+            data.user.current_chapter = 0
+            dispatch(loginUser(data.user))
+            localStorage.setItem("token", data.token)
+          }
         }
       })
   }

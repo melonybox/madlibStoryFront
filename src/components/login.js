@@ -21,20 +21,6 @@ class Login extends Component {
     this.props.userLoginFetch(this.state)
   }
 
-  componentDidUpdate(){
-    const userExist = this.props.currentUser.username !== undefined
-    const bothExist = userExist && this.props.madLibList.length !== 0
-
-    if (bothExist === true){
-      this.props.history.push("/storybox")
-    }
-    if (this.props.madLibList.length === 0) {
-      this.props.getMadlibListReset()
-      this.props.getAllMadlibs()
-      console.log("It Goofed Boss")
-    }
-  }
-
   render() {
     const userExist = this.props.currentUser.username !== undefined
     if ( userExist === true ) {

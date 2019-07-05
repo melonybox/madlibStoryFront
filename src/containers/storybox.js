@@ -18,8 +18,8 @@ class StoryBox extends Component {
 
   render(){
     const userExist = this.props.currentUser.username !== undefined
-    const noChapter = this.props.currentUser.current_chapter === null
-    const hasChapter = parseInt(this.props.currentUser.current_chapter) > null
+    const noChapter = this.props.currentUser.current_chapter === 0
+    const hasChapter = parseInt(this.props.currentUser.current_chapter) > 0
     const madlibLength = this.props.madLibList.length === parseInt(this.props.currentUser.current_chapter)
     const resumeChapter = (madlibLength !== hasChapter)
     const bothExist = userExist && this.props.madLibList.length !== 0

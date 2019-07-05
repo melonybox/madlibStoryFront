@@ -12,11 +12,12 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action) {
+    console.log(action)
     switch (action.type) {
       case 'LOGIN_USER':
         return {...state, currentUser: action.payload}
       case 'LOGOUT_USER':
-        return {...state, currentUser: {}}
+        return {...state, currentUser: {}, viewType: null, updateEditView: false, saveState: false, historyView: false, madLibEditType: null, currMadLibEdit: null, madLibLoaded: false}
       case 'GET_MADLIBLIST':
         return {...state, madLibList: action.payload, madLibLoaded: true}
       case 'GET_MADLIBLIST_RESET':
@@ -61,6 +62,7 @@ export default function reducer(state = initialState, action) {
         }
       }
       case 'NEXT_CHAPTER':
+      debugger
         return {...state, viewType: "form",
         currentUser: {
           ...state.currentUser,
