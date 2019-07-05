@@ -65,6 +65,9 @@ export default function reducer(state = initialState, action) {
           current_chapter: state.currentUser.current_chapter+1
         }
       }
+      case 'RETURN_CHAPTER':
+        return {...state, viewType: "form",
+      }
       case 'FILL_LIST':
         return {...state, madLibCompObj: action.payload, viewType: "story"}
       default:

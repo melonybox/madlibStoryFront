@@ -237,3 +237,7 @@ export const setSaveStateTrue = () => ({
 export const setSaveStateFalse = () => ({
   type: 'SET_SAVE_STATE_FALSE'
 })
+
+export const returnChapter = () => ({
+  type: 'RETURN_CHAPTER'
+})

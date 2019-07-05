@@ -29,7 +29,7 @@ class Story extends Component {
   handleSaveChapter = () => {
     if (this.props.saveState === false) {
       let madLibCompObjSave = JSON.stringify(this.props.madLibCompObj)
-      let madLibCurrChapter = (this.props.currentUser.current_chapter + 1)
+      let madLibCurrChapter = (parseInt(this.props.currentUser.current_chapter) + 1)
       let data = {user_id: this.props.currentUser.id,
                   madlib_id: madLibCurrChapter,
                   placeHolderFilled: madLibCompObjSave
