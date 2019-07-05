@@ -10,11 +10,12 @@ import HistoryBox from './containers/historybox';
 
 
 class App extends Component {
+
   componentDidMount = () => {
     if (!this.props.currentUser === false) {
       this.props.getUserFetch()
       this.props.getAllMadlibs()
-      console.log("LOADED")
+      console.log("App Component Run")
     }
   }
 
@@ -35,7 +36,7 @@ class App extends Component {
     //     return testa[matched];
     //   });
     // }
-    if (this.props.madLibLoaded === true) {
+    if (this.props.madLibList.length !== 0) {
       return (
         <div>
           <NavBar />

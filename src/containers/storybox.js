@@ -30,14 +30,13 @@ class StoryBox extends Component {
     // } else if ( this.props.currentUser.current_chapter === madlibLength ) {
     //   this.props.history.push("/historybox")
     // }
-
     switch (this.props.viewType) {
       case "form":
         return <StoryForm />
       case "story":
         return <Story />
       default:
-      if ( this.props.madLibList !== undefined ) {
+      if (this.props.madLibList.length !== 0) {
       return (
         <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
           <p>Hi {this.props.currentUser.username}</p>

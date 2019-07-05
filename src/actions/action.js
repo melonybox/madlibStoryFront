@@ -46,7 +46,6 @@ export const userLoginFetch = user => {
         } else {
           localStorage.setItem("token", data.token)
           dispatch(loginUser(data.user))
-
         }
       })
   }
@@ -156,7 +155,8 @@ export const getAllMadlibs = () => {
           }
         })
           .then(resp => resp.json())
-          .then(data => dispatch(getMadlibList(data)))
+          .then(data => dispatch(getMadlibList(data)),
+                        console.log("Loaded Madlibs"))
   }
 }
 
