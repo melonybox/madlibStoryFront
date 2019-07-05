@@ -20,6 +20,8 @@ class NavBar extends Component {
 
   render(){
     const userExist = this.props.currentUser.username !== undefined
+    const bothExist = userExist && this.props.madLibLoaded
+
     if (userExist === true) {
       const userHistory = this.props.currentUser.histories.length === 0
       if (userHistory === false) {
@@ -35,7 +37,7 @@ class NavBar extends Component {
         :
         null
       }
-      { userExist ?
+      { bothExist ?
         <div>
           <button>
             <Link to="/storybox" style={{textDecoration: "none", color: "inherit"}}>
@@ -57,7 +59,7 @@ class NavBar extends Component {
         :
         null
       }
-      { this.props.currentUser.username ?
+      { userExist ?
         <div>
           <button onClick={this.handleLogOut} style={{cursor: "pointer"}}>Log Out</button>
         </div>
@@ -78,7 +80,9 @@ class NavBar extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  historyView: state.historyView
+  historyView: state.historyView,
+  madLibList: state.madLibList,
+  madLibLoaded: state.madLibLoaded
 })
 
 const mapDispatchToProps = dispatch => ({

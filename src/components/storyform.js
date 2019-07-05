@@ -16,7 +16,7 @@ class StoryForm extends Component {
         ...this.state.madLibObj,
         [event.target.name]: event.target.value
       }
-    },() => console.log(this.state.madLibObj))
+    })
   }
 
   handleSubmit = (event) => {

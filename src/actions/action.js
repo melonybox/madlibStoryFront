@@ -241,3 +241,7 @@ export const setSaveStateFalse = () => ({
 export const returnChapter = () => ({
   type: 'RETURN_CHAPTER'
 })
+
+export const getMadlibListReset = () => ({
+  type: 'GET_MADLIBLIST_RESET'
+})

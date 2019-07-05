@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userPostFetch} from '../actions/action';
+import {userPostFetch, getAllMadlibs, getMadlibListReset} from '../actions/action';
 import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
@@ -21,8 +21,16 @@ class Signup extends Component {
   }
 
   componentDidUpdate(){
-    if (this.props.currentUser.id !== undefined){
+    const userExist = this.props.currentUser.username !== undefined
+    const bothExist = userExist && this.props.madLibList.length !== 0
+
+    if (bothExist === true){
       this.props.history.push("/storybox")
+    }
+    if (this.props.madLibList.length === 0) {
+      this.props.getMadlibListReset()
+      this.props.getAllMadlibs()
+      console.log("It Goofed Boss")
     }
   }
 
@@ -59,11 +67,15 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  madLibList: state.madLibList,
+  madLibLoaded: state.madLibLoaded
 })
 
 const mapDispatchToProps = dispatch => ({
-  userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
+  userPostFetch: userInfo => dispatch(userPostFetch(userInfo)),
+  getAllMadlibs: () => dispatch(getAllMadlibs()),
+  getMadlibListReset: () => dispatch(getMadlibListReset())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -19,6 +19,8 @@ export default function reducer(state = initialState, action) {
         return {...state, currentUser: {}}
       case 'GET_MADLIBLIST':
         return {...state, madLibList: action.payload, madLibLoaded: true}
+      case 'GET_MADLIBLIST_RESET':
+        return {...state, madLibLoaded: false}
       case 'HISTORY_VIEW':
         return {...state, historyView: true}
       case 'HISTORY_VIEW_OFF':

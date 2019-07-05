@@ -22,7 +22,8 @@ class StoryBox extends Component {
     const hasChapter = parseInt(this.props.currentUser.current_chapter) > null
     const madlibLength = this.props.madLibList.length === parseInt(this.props.currentUser.current_chapter)
     const resumeChapter = (madlibLength !== hasChapter)
-    if ( userExist === false ) {
+    const bothExist = userExist && this.props.madLibList.length !== 0
+    if ( userExist === false && bothExist === false ) {
       return <Redirect to="/" />
     }
     // } else if ( hasChapter === true ) {

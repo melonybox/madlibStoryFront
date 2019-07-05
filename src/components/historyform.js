@@ -19,8 +19,17 @@ class HistoryForm extends Component {
         ...this.state.filledObj,
         [event.target.name]: event.target.value
       }
-    },() => console.log(this.state.filledObj))
+    })
   }
+
+  // handleChange = (event) => {
+  //   this.setState({
+  //     filledObj: {
+  //       ...this.state.filledObj,
+  //       [event.target.name]: event.target.value
+  //     }
+  //   },() => console.log(this.state.filledObj))
+  // }
 
   handleSubmit = (event) => {
     event.preventDefault()

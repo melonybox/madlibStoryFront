@@ -36,21 +36,17 @@ class App extends Component {
     //     return testa[matched];
     //   });
     // }
-    if (this.props.madLibList.length !== 0) {
-      return (
-        <div>
-          <NavBar />
-          <Switch>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/storybox" component={StoryBox}/>
-            <Route path="/historybox" component={HistoryBox}/>
-          </Switch>
-        </div>
-      );
-    } else {
-      return null
-    }
+    return (
+      <div>
+        <NavBar />
+        <Switch>
+          <Route path="/signup" component={Signup}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/storybox" component={StoryBox}/>
+          <Route path="/historybox" component={HistoryBox}/>
+        </Switch>
+      </div>
+    );
   }
 }
 
