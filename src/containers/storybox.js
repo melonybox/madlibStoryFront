@@ -7,12 +7,21 @@ import Story from '../components/story';
 
 class StoryBox extends Component {
 
+  handleReturnChapter = () => {
+    this.props.returnChapter()
+  }
+
+  handleHistoryClick = () => {
+    this.props.history.push("/historybox")
+  }
+
 
   render(){
     const userExist = this.props.currentUser.username !== undefined
     const noChapter = this.props.currentUser.current_chapter === null
     const hasChapter = parseInt(this.props.currentUser.current_chapter) > null
-    const madlibLength = this.props.madLibList.length
+    const madlibLength = this.props.madLibList.length === parseInt(this.props.currentUser.current_chapter)
+    const resumeChapter = (madlibLength !== hasChapter)
     if ( userExist === false ) {
       return <Redirect to="/" />
     }
@@ -30,12 +39,28 @@ class StoryBox extends Component {
       default:
       if ( this.props.madLibList !== undefined ) {
       return (
-        <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
+        <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
           <p>Hi {this.props.currentUser.username}</p>
           { noChapter ?
             <button onClick={this.props.beginStory} style={{cursor: "pointer"}}>
               Start
             </button>
+            :
+            null
+          }
+          { resumeChapter ?
+            <button onClick={this.handleReturnChapter} style={{cursor: "pointer"}}>
+              Resume
+            </button>
+            :
+            null
+          }
+          { madlibLength ?
+            <div>
+              <p>
+                Completed.
+              </p>
+            </div>
             :
             null
           }

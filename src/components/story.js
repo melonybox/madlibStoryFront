@@ -5,7 +5,8 @@ import {postFavorite, nextChapter,setSaveStateTrue} from '../actions/action';
 class Story extends Component {
 
   state = {
-    madlibTemplate: this.props.madLibList[this.props.currentUser.current_chapter].template,
+    madlibTemplate: this.props.madLibList[parseInt(this.props.currentUser.current_chapter)].template,
+    madlibTitle: this.props.madLibList[parseInt(this.props.currentUser.current_chapter)].title,
     madLibRegex: null
   }
 
@@ -45,16 +46,23 @@ class Story extends Component {
 
   render(){
     let madLibListLength = (this.props.madLibList.length - 1)
-    let userCurrentChapter = this.props.currentUser.current_chapter
+    let userCurrentChapter = parseInt(this.props.currentUser.current_chapter)
     let finalChapter = (madLibListLength === userCurrentChapter)
 
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <div>
+          <p>Chapter Title: {this.state.madlibTitle}</p>
+        </div>
+        <div>
           {this.completedMadLib()}
         </div>
         { finalChapter ?
-          null
+          <div>
+            <p>
+              Completed.
+            </p>
+          </div>
           :
           <button onClick={this.handleNextChapter} style={{cursor: "pointer"}}>
             Next Chapter

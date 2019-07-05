@@ -19,33 +19,37 @@ class App extends Component {
   }
 
   render() {
+    // if (this.props.madLibLoaded === true) {
+    //   var test = this.props.madLibList[0].template
+    //   // template
+    //   var testa = JSON.parse(this.props.madLibList[0].placeHolderEmpty)
+    //   // emptyObjectWithKeys
+    //   let regEx = /(<\w*?>)/gi;
+    //   let replaceWords = Object.keys(testa).map((entry,idx) => {
+    //     return entry
+    //   })
+    //   let replaceWordsRegex = new RegExp(replaceWords.join("|"), 'gi')
+    //   testa["<spell>"] = "Ameno"
+    //   testa["<person>"] = "Billy Bob"
+    //   let testc = test.replace(replaceWordsRegex, function(matched){
+    //     return testa[matched];
+    //   });
+    // }
     if (this.props.madLibLoaded === true) {
-      var test = this.props.madLibList[0].template
-      // template
-      var testa = JSON.parse(this.props.madLibList[0].placeHolderEmpty)
-      // emptyObjectWithKeys
-      let regEx = /(<\w*?>)/gi;
-      let replaceWords = Object.keys(testa).map((entry,idx) => {
-        return entry
-      })
-      let replaceWordsRegex = new RegExp(replaceWords.join("|"), 'gi')
-      testa["<spell>"] = "Ameno"
-      testa["<person>"] = "Billy Bob"
-      let testc = test.replace(replaceWordsRegex, function(matched){
-        return testa[matched];
-      });
+      return (
+        <div>
+          <NavBar />
+          <Switch>
+            <Route path="/signup" component={Signup}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/storybox" component={StoryBox}/>
+            <Route path="/historybox" component={HistoryBox}/>
+          </Switch>
+        </div>
+      );
+    } else {
+      return null
     }
-    return (
-      <div>
-        <NavBar />
-        <Switch>
-          <Route path="/signup" component={Signup}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/storybox" component={StoryBox}/>
-          <Route path="/historybox" component={HistoryBox}/>
-        </Switch>
-      </div>
-    );
   }
 }
 

@@ -5,8 +5,9 @@ import {fillList,setSaveStateFalse} from '../actions/action';
 class StoryForm extends Component {
 
   state = {
-    madlibTemplate: this.props.madLibList[this.props.currentUser.current_chapter].template,
-    madLibObj: JSON.parse(this.props.madLibList[this.props.currentUser.current_chapter].placeHolderEmpty)
+    madlibTemplate: this.props.madLibList[parseInt(this.props.currentUser.current_chapter)].template,
+    madlibTitle: this.props.madLibList[parseInt(this.props.currentUser.current_chapter)].title,
+    madLibObj: JSON.parse(this.props.madLibList[parseInt(this.props.currentUser.current_chapter)].placeHolderEmpty)
   }
 
   handleChange = (event) => {
@@ -29,6 +30,9 @@ class StoryForm extends Component {
       <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <div>
           <p>Hi {this.props.currentUser.username}! This is a form!</p>
+        </div>
+        <div>
+          <p>Chapter Title: {this.state.madlibTitle}</p>
         </div>
         <div>
           <form onSubmit={this.handleSubmit}>
