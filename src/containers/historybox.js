@@ -18,7 +18,7 @@ class HistoryBox extends Component {
       case "form":
         return <HistoryForm />
       default:
-        return <HistorySelect />
+        return <HistorySelect historyStuff={this.props.history}/>
 
       }
     }

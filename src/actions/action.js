@@ -175,6 +175,27 @@ export const getAllMadlibs = () => {
   }
 }
 
+export const removeAllHistories = data => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/histories/${data}`, {
+          method: "DELETE",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
+          .then(resp => resp.json())
+          .then(data => dispatch(historyButtonOff()),
+                        dispatch(clearHistories()),
+                        dispatch(defaultViewType())
+                      )
+  }
+}
+
+export const clearHistories = () => ({
+    type: 'CLEAR_HISTORIES'
+})
+
 export const getMadlibList = data => ({
     type: 'GET_MADLIBLIST',
     payload: data
@@ -259,4 +280,8 @@ export const returnChapter = () => ({
 
 export const getMadlibListReset = () => ({
   type: 'GET_MADLIBLIST_RESET'
+})
+
+export const defaultViewType = () => ({
+  type: 'DEFAULT_STORY_VIEW'
 })

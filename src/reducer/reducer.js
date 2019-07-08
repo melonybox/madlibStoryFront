@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
       case 'LOGIN_USER':
         return {...state, currentUser: action.payload}
       case 'LOGOUT_USER':
-        return {...state, currentUser: {}, viewType: null, updateEditView: false, saveState: false, historyView: false, madLibEditType: null, currMadLibEdit: null, madLibLoaded: false}
+        return {...state, currentUser: {}, viewType: null, updateEditView: false, saveState: false, historyView: false, madLibEditType: null, currMadLibEdit: null}
       case 'GET_MADLIBLIST':
         return {...state, madLibList: action.payload, madLibLoaded: true}
       case 'GET_MADLIBLIST_RESET':
@@ -42,6 +42,12 @@ export default function reducer(state = initialState, action) {
         return {...state, saveState: true}
       case 'SET_SAVE_STATE_FALSE':
         return {...state, saveState: false}
+      case 'CLEAR_HISTORIES':
+        return {...state, currentUser: {
+          ...state.currentUser,
+          histories: []
+        }
+      }
       case 'UPDATE_FAVORITE_ARRAY_STATE':
         return {...state, currentUser: {
           ...state.currentUser,
@@ -62,7 +68,6 @@ export default function reducer(state = initialState, action) {
         }
       }
       case 'NEXT_CHAPTER':
-      debugger
         return {...state, viewType: "form",
         currentUser: {
           ...state.currentUser,
@@ -71,6 +76,9 @@ export default function reducer(state = initialState, action) {
       }
       case 'RETURN_CHAPTER':
         return {...state, viewType: "form",
+      }
+      case 'DEFAULT_STORY_VIEW':
+        return {...state, viewType: null,
       }
       case 'FILL_LIST':
         return {...state, madLibCompObj: action.payload, viewType: "story"}
