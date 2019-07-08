@@ -23,6 +23,7 @@ export const getUserFetch = () => {
               dispatch(loginUser(data))
             } else {
               dispatch(loginUser(data))
+              dispatch(historyButton())
             }
           }
         })
@@ -58,6 +59,7 @@ export const userLoginFetch = user => {
           } else {
             localStorage.setItem("token", data.token)
             dispatch(loginUser(data.user))
+            dispatch(historyButton())
           }
         }
       })
