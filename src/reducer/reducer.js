@@ -45,7 +45,7 @@ export default function reducer(state = initialState, action) {
       case 'CLEAR_HISTORIES':
         return {...state, currentUser: {
           ...state.currentUser,
-          histories: []
+          histories: [], current_chapter: 0
         }
       }
       case 'UPDATE_FAVORITE_ARRAY_STATE':
