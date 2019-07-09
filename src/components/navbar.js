@@ -29,47 +29,45 @@ class NavBar extends Component {
       }
     }
     return(
-      <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
+      <div className="formStuff" style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center", width: "fit-content"}}>
       { userExist ?
         <div>
-          <p style={{margin: 3, padding: 0}}> {this.props.currentUser.username}</p>
+          <p style={{margin: 3, padding: 0, fontSize: "0.74rem"}}> {this.props.currentUser.username}</p>
         </div>
         :
         null
       }
       { bothExist ?
-        <div>
-          <button>
-            <Link to="/storybox" style={{textDecoration: "none", color: "inherit"}}>
-              Story
-            </Link>
-          </button>
+        <div style={{paddingBottom: "2px", margin: "0px 3px"}}>
+          <Link to="/storybox" style={{textDecoration: "none", boxSizing: "border-box", margin: "0em", font: "400 11px system-ui", padding: "1px 7px 2px", borderWidth: "1px", borderStyle: "solid", borderImage: "initial"}}>
+            Story
+          </Link>
         </div>
         :
         null
       }
       { this.props.historyView ?
-        <div>
-          <button>
-            <Link onClick={this.handleHistoryDefault} to="/historybox" style={{textDecoration: "none", color: "inherit"}}>
-              History
-            </Link>
-          </button>
+        <div style={{paddingBottom: "2px", margin: "0px 3px"}}>
+          <Link onClick={this.handleHistoryDefault} to="/historybox" style={{textDecoration: "none", boxSizing: "border-box", margin: "0em", font: "400 11px system-ui", padding: "1px 7px 2px", borderWidth: "1px", borderStyle: "solid", borderImage: "initial"}}>
+            History
+          </Link>
         </div>
         :
         null
       }
       { userExist ?
         <div>
-          <button onClick={this.handleLogOut} style={{cursor: "pointer"}}>Log Out</button>
+          <button onClick={this.handleLogOut} style={{cursor: "pointer"}}>
+            Log Out
+          </button>
         </div>
         :
-        <div style={{display: "flex", flexDirection: "row"}}>
-          <Link to="/signup" style={{margin: 3, padding: 0}}>
-              <p>SignUp</p>
+        <div style={{display: "flex",justifyContent: "center",flexDirection: "row",alignItems: "center", paddingBottom: "2px", position: "relative", bottom: "-2px"}}>
+          <Link to="/signup" style={{textDecoration: "none", boxSizing: "border-box", margin: "0px 3px", font: "400 11px system-ui", padding: "1px 7px 2px", borderWidth: "1px", borderStyle: "solid", borderImage: "initial"}}>
+              SignUp
           </Link>
-          <Link to="/login" style={{margin: 3, padding: 0}}>
-              <p>Login</p>
+          <Link to="/login" style={{textDecoration: "none", boxSizing: "border-box", margin: "0px 3px", font: "400 11px system-ui", padding: "1px 7px 2px", borderWidth: "1px", borderStyle: "solid", borderImage: "initial"}}>
+              Login
           </Link>
         </div>
       }

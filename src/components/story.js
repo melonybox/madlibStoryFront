@@ -52,11 +52,11 @@ class Story extends Component {
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <div>
-          <p>Chapter Title: {this.state.madlibTitle}</p>
+          <p className="titleFont">Chapter Title: {this.state.madlibTitle}</p>
         </div>
-        <div>
-          {this.completedMadLib()}
-        </div>
+        <p className="formStuff" style={{width: "66%"}}>
+            {this.completedMadLib()}
+        </p>
         { finalChapter ?
           <div>
             <p>

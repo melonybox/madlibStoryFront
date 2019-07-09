@@ -10,7 +10,8 @@ class HistoryForm extends Component {
   }
 
   state = {
-    filledObj: JSON.parse(this.props.currMadLibEdit.placeHolderFilled)
+    filledObj: JSON.parse(this.props.currMadLibEdit.placeHolderFilled),
+    madlibTitle: this.props.madLibList[this.props.currMadLibEdit.madlib_id - 1].title
   }
 
   handleChange = (event) => {
@@ -46,16 +47,17 @@ class HistoryForm extends Component {
     return(
       <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <div>
-          <p>Hi {this.props.currentUser.username}! This is a form!</p>
+          <p className="titleFont">Chapter Title: {this.state.madlibTitle}</p>
         </div>
         <div>
-          <form onSubmit={this.handleSubmit}>
+          <form className="formStuff" onSubmit={this.handleSubmit} autoComplete="off">
             {Object.keys(this.state.filledObj).map((entry, idx) => {
               let placeholderSentence = `Enter a ${entry}:`
               return(
               <div key={idx}>
                 <label>{placeholderSentence}</label>
                 <input
+                className="textInput"
                 onChange={this.handleChange}
                 value={this.state.filledObj[entry]}
                 type="text"
@@ -64,7 +66,7 @@ class HistoryForm extends Component {
               </div>)
             })}
             <div style={{textAlign: "center"}}>
-              <input type="submit" value="Submit"/>
+              <input className="button" type="submit" value="Submit"/>
             </div>
           </form>
         </div>
@@ -75,7 +77,8 @@ class HistoryForm extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,
-  currMadLibEdit: state.currMadLibEdit
+  currMadLibEdit: state.currMadLibEdit,
+  madLibList: state.madLibList
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -26,11 +26,12 @@ class Signup extends Component {
       return <Redirect to="/storybox" />
     }
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <h1>Sign Up For An Account</h1>
 
         <label>Username</label>
         <input
+          className="textInput"
           name='username'
           placeholder='Username'
           value={this.state.username}
@@ -39,6 +40,7 @@ class Signup extends Component {
 
         <label>Password</label>
         <input
+          className="textInput"
           type='password'
           name='password'
           placeholder='Password'
@@ -46,7 +48,7 @@ class Signup extends Component {
           onChange={this.handleChange}
           /><br/>
 
-        <input type='submit'/>
+        <input className="button" type='submit'/>
       </form>
     )
   }

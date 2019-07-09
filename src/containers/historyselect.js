@@ -15,7 +15,7 @@ class HistorySelect extends Component {
     let userMadLib = this.props.currentUser.histories
 
     return(
-      <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
+      <div className="formStuff" style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center", marginTop: "16px"}}>
         <div>
           {userMadLib.map(saved => {
             return  <HistoryCard key={saved.id} currMadLib={saved}/>

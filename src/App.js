@@ -38,7 +38,7 @@ class App extends Component {
     //   });
     // }
     return (
-      <div>
+      <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
         <NavBar />
         <Switch>
           <Route path="/signup" component={Signup}/>

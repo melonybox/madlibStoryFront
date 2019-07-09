@@ -32,7 +32,7 @@ class HistoryView extends Component {
   render(){
     return(
       <div style={{display: "flex", justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
-        <p>{this.completedMadLib()}</p>
+        <p className="formStuff" style={{width: "66%"}}>{this.completedMadLib()}</p>
         <div style={{display: "flex", justifyContent: "center",flexDirection: "row",alignItems: "center"}}>
           <button onClick={this.handleEditClick} style={{cursor: "pointer"}}>
             Edit
