@@ -54,13 +54,13 @@ class Story extends Component {
         <div>
           <p className="titleFont">Chapter Title: {this.state.madlibTitle}</p>
         </div>
-        <p className="formStuff" style={{width: "66%"}}>
+        <p className="formStuff" style={{width: "66%", position: "relative", top: "-16px"}}>
             {this.completedMadLib()}
         </p>
         { finalChapter ?
           <div>
             <p>
-              Completed.
+              Story has been completed.
             </p>
           </div>
           :

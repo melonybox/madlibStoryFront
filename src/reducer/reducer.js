@@ -71,7 +71,7 @@ export default function reducer(state = initialState, action) {
         return {...state, viewType: "form",
         currentUser: {
           ...state.currentUser,
-          current_chapter: state.currentUser.current_chapter+1
+          current_chapter: (parseInt(state.currentUser.current_chapter)+1)
         }
       }
       case 'RETURN_CHAPTER':

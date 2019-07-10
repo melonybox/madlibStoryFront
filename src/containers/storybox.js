@@ -40,25 +40,30 @@ class StoryBox extends Component {
       if (this.props.madLibList.length !== 0) {
       return (
         <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
-          <p>Hi {this.props.currentUser.username}</p>
           { noChapter ?
-            <button onClick={this.props.beginStory} style={{cursor: "pointer"}}>
-              Start
-            </button>
+            <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
+              <p>Would you like to begin the madlib story {this.props.currentUser.username}?</p>
+              <button onClick={this.props.beginStory} style={{cursor: "pointer"}}>
+                Start
+              </button>
+            </div>
             :
             null
           }
           { resumeChapter ?
-            <button onClick={this.handleReturnChapter} style={{cursor: "pointer"}}>
-              Resume
-            </button>
+            <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
+              <p>Would you like to resume the madlib story {this.props.currentUser.username}?</p>
+              <button onClick={this.handleReturnChapter} style={{cursor: "pointer"}}>
+                Resume
+              </button>
+            </div>
             :
             null
           }
           { madlibLength ?
             <div>
               <p>
-                Completed.
+                You have completed the madlib story {this.props.currentUser.username}.
               </p>
             </div>
             :
