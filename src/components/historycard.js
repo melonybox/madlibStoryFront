@@ -6,8 +6,8 @@ import {historyEditView, setCurrMadlibEdit} from '../actions/action';
 class HistoryCard extends Component {
 
   handleOnClick = () => {
-    this.props.historyEditView()
     this.props.setCurrMadlibEdit(this.props.currMadLib)
+    this.props.historyEditView()
   }
 
   render(){
