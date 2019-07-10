@@ -60,7 +60,7 @@ class Story extends Component {
         { finalChapter ?
           <div>
             <p>
-              Story has been completed.
+              You have completeled the story {this.props.currentUser.username}.
             </p>
           </div>
           :
