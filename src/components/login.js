@@ -27,7 +27,7 @@ class Login extends Component {
     }
     return (
       <form onSubmit={this.handleSubmit} style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
-        <h1>Login</h1>
+        <p className="titleFont">Login</p>
 
         <label>Username</label>
         <input

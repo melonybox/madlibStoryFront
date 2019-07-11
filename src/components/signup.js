@@ -27,7 +27,7 @@ class Signup extends Component {
     }
     return (
       <form onSubmit={this.handleSubmit} style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
-        <h1>Sign Up For An Account</h1>
+        <p className="titleFont">SignUp For An Account</p>
 
         <label>Username</label>
         <input

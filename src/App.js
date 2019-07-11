@@ -39,6 +39,7 @@ class App extends Component {
     // }
     return (
       <div style={{display: "flex",justifyContent: "center",flexDirection: "column",alignItems: "center"}}>
+        <p className="titleSuperFont">Madlibs: Blank Resurrection</p>
         <NavBar />
         <Switch>
           <Route path="/signup" component={Signup}/>
