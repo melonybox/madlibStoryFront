@@ -25,17 +25,26 @@ button, .button {
   margin: 0px 3px;
 }
 
-button:active, .button:active, a:active {
-  color: #7B1FA2;
-  background-color: #E0E0E0;
-  border: 1px solid #17351a;
-}
-
 a {
   color: #E1BEE7;
   background-color: #424242;
   border-radius: 16px;
   border: 1px solid  #cae8cc;
+}
+
+button:hover, .button:hover, a:hover {
+  color: #FFCDD2;
+  background-color: #424242;
+  border: 1px solid  #BBDEFB;
+  box-shadow: 0 0 6px;
+
+}
+
+button:active, .button:active, a:active {
+  color: #7B1FA2;
+  background-color: #E0E0E0;
+  border: 1px solid #17351a;
+  box-shadow: 0 0 6px;
 }
 
 .textInput {

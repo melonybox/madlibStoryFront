@@ -48,7 +48,7 @@ class StoryForm extends Component {
               </div>)
             })}
             <div style={{textAlign: "center"}}>
-              <input className="button" type="submit" value="Submit"/>
+              <input style={{cursor: "pointer"}} className="button" type="submit" value="Submit"/>
             </div>
           </form>
         </div>
