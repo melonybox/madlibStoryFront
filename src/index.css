@@ -13,13 +13,13 @@ code {
 }
 
 html {
-  background-color: #616161;
+  background-color: #424242;
   color: #E1BEE7;
 }
 
 button, .button {
   color: #E1BEE7;
-  background-color: #424242;
+  background-color: #212121;
   border-radius: 16px;
   border: 1px solid  #cae8cc;
   margin: 0px 3px;
@@ -27,32 +27,37 @@ button, .button {
 
 a {
   color: #E1BEE7;
-  background-color: #424242;
+  background-color: #212121;
   border-radius: 16px;
   border: 1px solid  #cae8cc;
 }
 
 button:hover, .button:hover, a:hover {
   color: #FFCDD2;
-  background-color: #424242;
+  background-color: #212121;
   border: 1px solid  #BBDEFB;
   box-shadow: 0 0 6px;
 
 }
 
 button:active, .button:active, a:active {
-  color: #7B1FA2;
-  background-color: #E0E0E0;
-  border: 1px solid #17351a;
+  color: #6A1B9A;
+  background-color: #F5F5F5;
+  border: 1px solid #cae8cc;
   box-shadow: 0 0 6px;
 }
 
 .textInput {
-  color: #7B1FA2;
-  background-color: #E0E0E0;
-  border: 1px solid #17351a;
+  color: #6A1B9A;
+  background-color: #F5F5F5;
+  border: 1px solid #BBDEFB;
   margin: 2.5px 3px;
   border-radius: 4px;
+}
+
+.textInput::placeholder {
+  color: #C62828;
+  opacity: 1;
 }
 
 .formStuff {
@@ -64,4 +69,5 @@ button:active, .button:active, a:active {
 
 .titleFont {
   font-size: 1.66rem;
+  text-align: center;
 }
