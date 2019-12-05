@@ -7,6 +7,8 @@ A madlib application where the user fills in prompts with their input, can go th
 This is the front end portion to https://github.com/melonybox/madlibStoryBack.<br>
 Front end portion should be started last.
 
+Video Demo: https://youtu.be/3g46qETXJGM
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This portion uses:<br>
